@@ -19,7 +19,7 @@ class Images
     #[ORM\Column(length: 100)]
     private ?string $alt = null;
 
-    #[ORM\ManyToOne(inversedBy: 'images')]
+    #[ORM\ManyToOne(inversedBy: 'images', cascade: ['persist', 'remove'])]
     private ?Plates $plate = null;
 
     public function getId(): ?int

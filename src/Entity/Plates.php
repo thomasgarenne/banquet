@@ -27,7 +27,7 @@ class Plates
     #[ORM\Column]
     private ?int $price = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plates')]
+    #[ORM\ManyToOne(inversedBy: 'plates', cascade: ["persist", "remove"])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categories $category = null;
 

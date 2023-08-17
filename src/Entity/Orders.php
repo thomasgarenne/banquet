@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrdersRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -65,7 +67,7 @@ class Orders
 
     public function setDates(\DateTimeInterface $dates): static
     {
-        $this->dates = $dates;
+        $this->dates = new DateTime();
 
         return $this;
     }

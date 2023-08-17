@@ -28,7 +28,7 @@ class Wines
     #[ORM\Column]
     private array $grappes = [];
 
-    #[ORM\ManyToOne(inversedBy: 'wines')]
+    #[ORM\ManyToOne(inversedBy: 'wines', cascade: ["persist", "remove"])]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categories $category = null;
 
