@@ -6,6 +6,7 @@ use App\Controller\Admin\Traits\IndexTrait;
 use App\Entity\Plates;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\NumberField;
@@ -24,14 +25,13 @@ class PlatesCrudController extends AbstractCrudController
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
+            IdField::new('id')->hideOnForm(),
             TextField::new('name'),
             TextField::new('slug'),
             TextField::new('description'),
             NumberField::new('price'),
             CollectionField::new('images'),
-            ArrayField::new('category')
-                ->onlyOnIndex()
+            AssociationField::new('category')
         ];
     }
 }
