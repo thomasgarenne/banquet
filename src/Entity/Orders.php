@@ -25,7 +25,7 @@ class Orders
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $dates = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $notes = null;
 
     #[ORM\OneToOne(inversedBy: 'orders', cascade: ['persist', 'remove'])]

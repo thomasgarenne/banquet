@@ -28,7 +28,7 @@ class OrdersCrudController extends AbstractCrudController
             NumberField::new('number'),
             TextField::new('time'),
             DateTimeField::new('dates'),
-            TextField::new('notes'),
+            TextField::new('notes')->setRequired(false),
             AssociationField::new('relation')
         ];
     }
