@@ -38,9 +38,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 15)]
     private ?string $phone = null;
 
-    #[ORM\OneToOne(mappedBy: 'relation', cascade: ['persist', 'remove'])]
-    private ?Orders $orders = null;
-
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
@@ -146,28 +143,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPhone(string $phone): static
     {
         $this->phone = $phone;
-
-        return $this;
-    }
-
-    public function getOrders(): ?Orders
-    {
-        return $this->orders;
-    }
-
-    public function setOrders(?Orders $orders): static
-    {
-        // unset the owning side of the relation if necessary
-        if ($orders === null && $this->orders !== null) {
-            $this->orders->setRelation(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($orders !== null && $orders->getRelation() !== $this) {
-            $orders->setRelation($this);
-        }
-
-        $this->orders = $orders;
 
         return $this;
     }

@@ -6,7 +6,6 @@ use App\Controller\Admin\Traits\IndexTrait;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
@@ -31,10 +30,6 @@ class UserCrudController extends AbstractCrudController
             TelephoneField::new('phone'),
             EmailField::new('email'),
             ArrayField::new('roles'),
-            AssociationField::new('orders')
-                ->onlyOnIndex(),
-            ArrayField::new('orders')
-                ->onlyOnDetail(),
         ];
     }
 }

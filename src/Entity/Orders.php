@@ -7,6 +7,7 @@ use DateTime;
 use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 
 #[ORM\Entity(repositoryClass: OrdersRepository::class)]
 class Orders
@@ -28,8 +29,25 @@ class Orders
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $notes = null;
 
-    #[ORM\OneToOne(inversedBy: 'orders', cascade: ['persist', 'remove'])]
-    private ?User $relation = null;
+    #[ORM\Column(length: 50)]
+    private ?string $firstname = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $lastname = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 15)]
+    private ?string $phone = null;
+
+    #[ORM\Column]
+    private ?bool $isAgree = null;
+
+    public function __construct()
+    {
+        $this->setIsAgree(false);
+    }
 
     public function getId(): ?int
     {
@@ -65,7 +83,7 @@ class Orders
         return $this->dates;
     }
 
-    public function setDates(\DateTimeInterface $dates): static
+    public function setDates(DateTime $dates): static
     {
         $this->dates = new DateTime();
 
@@ -84,14 +102,62 @@ class Orders
         return $this;
     }
 
-    public function getRelation(): ?User
+    public function getFirstname(): ?string
     {
-        return $this->relation;
+        return $this->firstname;
     }
 
-    public function setRelation(?User $relation): static
+    public function setFirstname(string $firstname): static
     {
-        $this->relation = $relation;
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): static
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): static
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function isIsAgree(): ?bool
+    {
+        return $this->isAgree;
+    }
+
+    public function setIsAgree(bool $isAgree): static
+    {
+        $this->isAgree = $isAgree;
 
         return $this;
     }
